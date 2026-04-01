@@ -31,6 +31,11 @@ nav a {
     margin: 0 15px;
     text-decoration: none;
     color: white;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #1E5EFF;
 }
 
 .btn-contact {
@@ -47,6 +52,7 @@ nav a {
 .hero-content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .hero-text {
@@ -64,12 +70,14 @@ nav a {
 
 .hero-buttons a {
     margin-right: 10px;
+    text-decoration: none;
 }
 
 .btn-primary {
     background: #1E5EFF;
     padding: 12px 25px;
     border-radius: 6px;
+    color: white;
 }
 
 .btn-secondary {
@@ -85,9 +93,20 @@ nav a {
     font-size: 14px;
 }
 
+/* HERO IMAGE */
+.hero-img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 10px;
+}
+
 /* PRODUCTS */
 .products {
     padding: 60px 0;
+}
+
+.products h2 {
+    margin-bottom: 20px;
 }
 
 .grid {
@@ -100,6 +119,18 @@ nav a {
     background: #132C50;
     padding: 20px;
     border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(30, 94, 255, 0.4);
 }
 
 /* WHY */
@@ -129,4 +160,22 @@ footer {
 .logo-footer {
     height: 40px;
     margin-bottom: 10px;
+}
+
+.socials a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }
