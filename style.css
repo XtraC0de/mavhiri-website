@@ -1,1 +1,132 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0B1F3A;
+    color: white;
+}
 
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* NAVBAR */
+.navbar {
+    padding: 20px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 45px;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-contact {
+    background: #1E5EFF;
+    padding: 10px 20px;
+    border-radius: 6px;
+}
+
+/* HERO */
+.hero {
+    padding: 80px 0;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 48px;
+}
+
+.hero p {
+    color: #ccc;
+    margin: 20px 0;
+}
+
+.hero-buttons a {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background: #1E5EFF;
+    padding: 12px 25px;
+    border-radius: 6px;
+}
+
+.btn-secondary {
+    border: 1px solid #1E5EFF;
+    padding: 12px 25px;
+    border-radius: 6px;
+    color: #1E5EFF;
+}
+
+.trust {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* PRODUCTS */
+.products {
+    padding: 60px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: #132C50;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* WHY */
+.why {
+    padding: 60px 0;
+}
+
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    padding: 15px 20px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+}
+
+/* FOOTER */
+footer {
+    background: #081426;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.logo-footer {
+    height: 40px;
+    margin-bottom: 10px;
+}
