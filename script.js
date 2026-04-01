@@ -1,1 +1,3 @@
-console.log("Mavhiri website running");
+console.log("Mavhiri website loaded");
+
+// Future enhancements placeholder
