@@ -1,0 +1,42 @@
+[
+  {
+    "id": 5,
+    "type": "bus",
+    "brand": "Continental",
+    "size": "295/80R22.5",
+    "quantity": 4,
+    "price": 110
+  },
+  {
+    "id": 2,
+    "type": "car",
+    "brand": "Bridgestone",
+    "size": "195/65R15",
+    "quantity": 8,
+    "price": 95
+  },
+  {
+    "id": 1,
+    "type": "car",
+    "brand": "Michelin",
+    "size": "225/45R17",
+    "quantity": 12,
+    "price": 220
+  },
+  {
+    "id": 3,
+    "type": "kombi",
+    "brand": "Goodyear",
+    "size": "205R16",
+    "quantity": 10,
+    "price": 330
+  },
+  {
+    "id": 4,
+    "type": "truck",
+    "brand": "Double Coin",
+    "size": "315/80R22.5",
+    "quantity": 6,
+    "price": 450
+  }
+]

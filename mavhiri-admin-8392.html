@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mavhiri Admin Panel</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- 🔐 PASSWORD PROTECTION -->
+  <script>
+    const password = prompt("Enter admin password:");
+
+    if (password !== "wheels369") {
+      alert("Access denied");
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <style>
+    .admin-page {
+      padding: 130px 0 60px;
+      min-height: 100vh;
+      background: #0B1F3A;
+      color: white;
+    }
+
+    .admin-panel {
+      background: rgba(19, 44, 80, 0.7);
+      border: 1px solid rgba(30, 94, 255, 0.15);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .admin-panel input,
+    .admin-panel select,
+    .admin-panel button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .admin-panel input,
+    .admin-panel select {
+      background: #132C50;
+      color: white;
+    }
+
+    .admin-panel button {
+      background: #1E5EFF;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .admin-actions button {
+      width: auto;
+      min-width: 180px;
+    }
+
+    .btn-secondary-admin {
+      background: #0f2d57 !important;
+    }
+
+    .btn-danger-admin {
+      background: #b3261e !important;
+    }
+
+    .admin-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .admin-item {
+      background: rgba(19, 44, 80, 0.7);
+      border: 1px solid rgba(30, 94, 255, 0.15);
+      padding: 15px 18px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .admin-item-right {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .admin-item-right button {
+      width: auto;
+      padding: 10px 14px;
+    }
+
+    .admin-note {
+      color: #ccc;
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media(max-width: 768px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html">
+        <img src="assets/mavhiri_logo.png" class="logo" alt="Mavhiri logo" />
+      </a>
+
+      <nav>
+        <a href="index.html">Website</a>
+        <a href="#manage">Manage Stock</a>
+      </nav>
+
+      <a href="index.html" class="btn-contact">Back to Site</a>
+    </div>
+  </header>
+
+  <!-- ADMIN CONTENT -->
+  <section class="admin-page" id="manage">
+    <div class="container">
+      <h1>Mavhiri Admin Panel</h1>
+
+      <p style="color:#ccc; margin-bottom: 25px;">
+        Add, edit, remove tyres, then export a fresh <strong>stock.json</strong>.
+      </p>
+
+      <!-- FORM -->
+      <div class="admin-panel">
+        <h2 id="form-title">Add New Tyre</h2>
+
+        <div class="admin-grid">
+          <select id="type">
+            <option value="car">Car</option>
+            <option value="kombi">Kombi</option>
+            <option value="truck">Truck</option>
+            <option value="bus">Bus</option>
+          </select>
+
+          <input id="brand" type="text" placeholder="Brand" />
+          <input id="size" type="text" placeholder="Size e.g. 225/45R17" />
+          <input id="quantity" type="number" placeholder="Quantity" min="0" />
+          <input id="price" type="number" placeholder="Price" min="0" />
+        </div>
+
+        <div class="admin-actions">
+          <button id="save-btn">Save Tyre</button>
+          <button id="cancel-edit-btn" class="btn-secondary-admin">Cancel Edit</button>
+          <button id="export-btn" class="btn-secondary-admin">Export JSON</button>
+          <button id="clear-btn" class="btn-danger-admin">Clear All</button>
+        </div>
+
+        <p class="admin-note">
+          After making changes, click <strong>Export JSON</strong> and replace your live
+          <strong>stock.json</strong>.
+        </p>
+      </div>
+
+      <!-- LIST -->
+      <div class="admin-panel">
+        <h2>Current Stock</h2>
+        <div id="admin-list" class="admin-list"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="admin.js"></script>
+
+</body>
+</html>

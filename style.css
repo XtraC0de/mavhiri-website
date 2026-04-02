@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    padding: 0;
     font-family: 'Poppins', sans-serif;
     background: #0B1F3A;
     color: white;
@@ -14,17 +15,31 @@ body {
 
 /* NAVBAR */
 .navbar {
-    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+
+    background: rgba(10, 30, 60, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    z-index: 1000;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
 }
 
 .logo {
-    height: 45px;
+    height: 180px;
 }
 
 nav a {
@@ -46,10 +61,16 @@ nav a:hover {
 
 /* HERO */
 .hero {
-    padding: 80px 0;
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -93,11 +114,25 @@ nav a:hover {
     font-size: 14px;
 }
 
-/* HERO IMAGE */
-.hero-img {
+/* HERO BG */
+.hero-bg {
+    position: absolute;
     width: 100%;
-    max-width: 550px;
-    border-radius: 10px;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(11,31,58,0.9), rgba(11,31,58,0.4));
+    top: 0;
+    left: 0;
 }
 
 /* PRODUCTS */
@@ -124,6 +159,8 @@ nav a:hover {
 
 .card img {
     width: 100%;
+    max-height: 220px;
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 10px;
 }
@@ -150,7 +187,77 @@ nav a:hover {
     text-decoration: none;
 }
 
-/* FOOTER */
+/* ================= CONTACT SECTION ================= */
+.contact {
+    padding: 80px 0 20px 0;
+    background: linear-gradient(180deg, #0B1F3A, #081426);
+}
+
+.contact-container {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.contact p {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* CARD */
+.contact-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(30, 94, 255, 0.2);
+    border-radius: 12px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+}
+
+/* ITEMS */
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+/* ICON */
+.contact-icon {
+    width: 45px;
+    height: 45px;
+    background: #1E5EFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* BUTTON */
+.contact-btn {
+    display: inline-block;
+    margin-top: 25px;
+    background: #25D366;
+    padding: 12px 25px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ================= FOOTER ================= */
 footer {
     background: #081426;
     padding: 30px 0;
@@ -158,14 +265,28 @@ footer {
 }
 
 .logo-footer {
-    height: 40px;
-    margin-bottom: 10px;
+    height: 120px;
+    margin-bottom: 15px;
 }
 
-.socials a {
-    margin: 0 10px;
-    color: white;
-    text-decoration: none;
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.social-icons img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
 }
 
 /* MOBILE */
@@ -178,4 +299,158 @@ footer {
     .grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* TEAM SECTION */
+.team {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.team-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+/* GRID */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* CARD */
+.team-card {
+    background: rgba(19, 44, 80, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.4s;
+    border: 1px solid rgba(30, 94, 255, 0.15);
+    text-align: left;
+}
+
+/* HOVER EFFECT */
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(30, 94, 255, 0.25);
+}
+
+.team-card img {
+    width: 100%;
+    height: auto; /* 👈 KEY CHANGE */
+    display: block;
+
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
+.team-info h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.team-position {
+    font-size: 14px;
+    color: #1E5EFF;
+    font-weight: 500;
+}
+
+/* ================= STOCK SYSTEM ================= */
+
+.stock-section {
+    padding: 60px 0;
+}
+
+/* TITLE */
+#stock-title {
+    margin-bottom: 20px;
+}
+
+/* SEARCH */
+#search-input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    background: #132C50;
+    color: white;
+
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* STOCK LIST */
+#stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* STOCK CARD */
+.stock-item {
+    background: rgba(19, 44, 80, 0.7);
+    backdrop-filter: blur(10px);
+
+    padding: 15px 20px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: 0.3s;
+    border: 1px solid rgba(30, 94, 255, 0.15);
+}
+
+/* HOVER */
+.stock-item:hover {
+    background: rgba(30, 94, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* LEFT SIDE */
+.stock-item strong {
+    font-size: 16px;
+}
+
+.stock-item small {
+    display: block;
+    color: #ccc;
+    font-size: 12px;
+}
+
+/* RIGHT SIDE */
+.stock-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.qty {
+    color: #1E5EFF;
+    font-weight: 600;
+}
+
+/* ORDER BUTTON */
+.stock-right a {
+    background: #25D366;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.stock-right a:hover {
+    transform: scale(1.05);
+}
+
+/* LOW STOCK */
+.low-stock {
+    border-left: 4px solid #ff4d4d;
 }
