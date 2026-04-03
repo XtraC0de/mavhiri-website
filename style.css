@@ -308,3 +308,11 @@ footer {
         text-align: center;
     }
 }
+
+.card img {
+    width: 100%;
+    max-height: 260px;   /* 🔥 controls size */
+    object-fit: cover;   /* keeps it clean */
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
