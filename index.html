@@ -5,12 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mavhiri Tyres</title>
 
-  <!-- ✅ FAVICON -->
+  <!-- FAVICON -->
   <link rel="icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
 
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
@@ -21,21 +17,26 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container nav-container">
+
       <a href="#home">
         <img src="assets/mavhiri_logo.png" class="logo" alt="Mavhiri logo" />
       </a>
 
-      <nav>
+      <!-- ✅ NEW: HAMBURGER BUTTON -->
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+
+      <!-- ✅ UPDATED: NAV WITH ID -->
+      <nav id="nav-menu">
         <a href="#home">Home</a>
         <a href="#tyres">Tyres</a>
         <a href="#about">About</a>
         <a href="#team">Team</a>
       </nav>
 
-      <!-- ✅ ADMIN BUTTON REMOVED -->
       <div style="display:flex; gap:12px; align-items:center;">
         <a href="#contact" class="btn-contact">Contact</a>
       </div>
+
     </div>
   </header>
 
@@ -55,11 +56,9 @@
         <div class="hero-buttons">
           <a href="#tyres" class="btn-primary">View Tyres</a>
 
-          <a
-            href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20to%20order%20tyres"
-            target="_blank"
-            class="btn-secondary"
-          >
+          <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20to%20order%20tyres"
+             target="_blank"
+             class="btn-secondary">
             Order in Bulk
           </a>
         </div>
@@ -76,25 +75,25 @@
 
       <div class="grid">
         <div class="card tyre-card" data-type="car">
-          <img src="assets/tyre_car.png" alt="Small car tyres" />
+          <img src="assets/tyre_car.png" />
           <h3>Small Car Tyres</h3>
           <p>Passenger vehicle tyres</p>
         </div>
 
         <div class="card tyre-card" data-type="kombi">
-          <img src="assets/tyre_kombi.png" alt="Kombi tyres" />
+          <img src="assets/tyre_kombi.png" />
           <h3>Kombi Tyres</h3>
           <p>Minibus tyres</p>
         </div>
 
         <div class="card tyre-card" data-type="truck">
-          <img src="assets/tyre_truck.png" alt="Truck tyres" />
+          <img src="assets/tyre_truck.png" />
           <h3>Truck Tyres</h3>
           <p>Heavy duty tyres</p>
         </div>
 
         <div class="card tyre-card" data-type="bus">
-          <img src="assets/tyre_bus.png" alt="Bus tyres" />
+          <img src="assets/tyre_bus.png" />
           <h3>Bus Tyres</h3>
           <p>Commercial tyres</p>
         </div>
@@ -107,11 +106,7 @@
     <div class="container">
       <h2 id="stock-title">Car Tyres</h2>
 
-      <input
-        id="search-input"
-        type="text"
-        placeholder="Search tyre size or brand..."
-      />
+      <input id="search-input" type="text" placeholder="Search tyre size or brand..." />
 
       <div id="stock-list"></div>
     </div>
@@ -153,30 +148,22 @@
 
       <div class="team-grid">
         <div class="team-card">
-          <img src="assets/zanorashe.png" alt="Zanorashe Abel Manzvera" />
-          <div class="team-info">
-            <h3>Zanorashe Abel Manzvera</h3>
-            <p class="team-position">Chief Executive Officer</p>
-          </div>
+          <img src="assets/zanorashe.png" />
+          <h3>Zanorashe Abel Manzvera</h3>
+          <p class="team-position">Chief Executive Officer</p>
         </div>
 
         <div class="team-card">
-          <img src="assets/talent.png" alt="Talent Chikwasha" />
-          <div class="team-info">
-            <h3>Talent Chikwasha</h3>
-            <p class="team-position">Chief Operating Officer</p>
-          </div>
+          <img src="assets/talent.png" />
+          <h3>Talent Chikwasha</h3>
+          <p class="team-position">Chief Operating Officer</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- WHATSAPP -->
-  <a
-    href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20your%20tyres"
-    target="_blank"
-    class="whatsapp"
-  >
+  <a href="https://wa.me/263771234567" target="_blank" class="whatsapp">
     Chat on WhatsApp
   </a>
 
@@ -203,18 +190,20 @@
   <!-- FOOTER -->
   <footer>
     <div class="container footer">
-      <img src="assets/mavhiri_logo.png" class="logo-footer" alt="Mavhiri footer logo" />
+      <img src="assets/mavhiri_logo.png" class="logo-footer" />
 
       <div class="social-icons">
-        <a href="#"><img src="assets/facebook-logo.png" alt="Facebook" /></a>
-        <a href="#"><img src="assets/instagram-logo.png" alt="Instagram" /></a>
-        <a href="#"><img src="assets/tiktok-logo.png" alt="TikTok" /></a>
+        <a href="#"><img src="assets/facebook-logo.png" /></a>
+        <a href="#"><img src="assets/instagram-logo.png" /></a>
+        <a href="#"><img src="assets/tiktok-logo.png" /></a>
       </div>
 
       <p>© 2026 Mavhiri. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- SCRIPT -->
   <script src="script.js"></script>
+
 </body>
 </html>
