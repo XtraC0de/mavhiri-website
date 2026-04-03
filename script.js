@@ -1,13 +1,9 @@
 let stockData = [];
 let currentType = "car";
 
-/* ================= HELPERS ================= */
-
 function formatTypeLabel(type) {
   return type.charAt(0).toUpperCase() + type.slice(1) + " Tyres";
 }
-
-/* ================= LOAD STOCK ================= */
 
 async function loadStock() {
   try {
@@ -18,24 +14,25 @@ async function loadStock() {
     renderStock();
   } catch (error) {
     console.error("Error loading stock:", error);
-    document.getElementById("stock-list").innerHTML =
-      "<p>Failed to load stock data.</p>";
+    const stockList = document.getElementById("stock-list");
+    if (stockList) {
+      stockList.innerHTML = "<p>Failed to load stock data.</p>";
+    }
   }
 }
-
-/* ================= RENDER STOCK ================= */
 
 function renderStock() {
   const list = document.getElementById("stock-list");
   const title = document.getElementById("stock-title");
   const searchInput = document.getElementById("search-input");
 
-  const search = (searchInput?.value || "").toLowerCase().trim();
+  if (!list || !title || !searchInput) return;
+
+  const search = searchInput.value.toLowerCase().trim();
   title.textContent = formatTypeLabel(currentType);
 
   const filtered = stockData.filter((item) => {
     const sameType = item.type === currentType;
-
     const matchesSearch =
       item.brand.toLowerCase().includes(search) ||
       item.size.toLowerCase().includes(search);
@@ -63,7 +60,6 @@ function renderStock() {
           <div class="stock-right">
             <span class="qty">Stock: ${item.quantity}</span>
             <span>$${item.price}</span>
-
             <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20${encodeURIComponent(item.brand + " " + item.size)}" target="_blank">
               Order
             </a>
@@ -73,8 +69,6 @@ function renderStock() {
     })
     .join("");
 }
-
-/* ================= EVENTS ================= */
 
 function setupEvents() {
   const tyreCards = document.querySelectorAll(".tyre-card");
@@ -88,17 +82,19 @@ function setupEvents() {
       currentType = card.dataset.type;
       renderStock();
 
-      stockSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      if (stockSection) {
+        stockSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
     });
   });
 
-  searchInput.addEventListener("input", renderStock);
+  if (searchInput) {
+    searchInput.addEventListener("input", renderStock);
+  }
 }
-
-/* ================= HAMBURGER MENU ================= */
 
 function setupMobileMenu() {
   const toggle = document.getElementById("menu-toggle");
@@ -108,27 +104,25 @@ function setupMobileMenu() {
 
   const navLinks = nav.querySelectorAll("a");
 
-  // Toggle menu
   toggle.addEventListener("click", () => {
     nav.classList.toggle("show");
+    toggle.setAttribute("aria-expanded", nav.classList.contains("show"));
   });
 
-  // Close when clicking a link
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("show");
+      toggle.setAttribute("aria-expanded", "false");
     });
   });
 
-  // Close when clicking outside
   document.addEventListener("click", (e) => {
     if (!nav.contains(e.target) && !toggle.contains(e.target)) {
       nav.classList.remove("show");
+      toggle.setAttribute("aria-expanded", "false");
     }
   });
 }
-
-/* ================= INIT ================= */
 
 document.addEventListener("DOMContentLoaded", async () => {
   setupEvents();
