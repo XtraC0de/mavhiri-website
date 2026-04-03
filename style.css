@@ -340,3 +340,42 @@ footer {
     }
 }
 
+/* HAMBURGER (hidden on desktop) */
+.menu-toggle {
+    display: none;
+}
+
+/* MOBILE NAV */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+        font-size: 26px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 90px;
+        right: 20px;
+        background: rgba(10,30,60,0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 15px 20px;
+        border-radius: 10px;
+        min-width: 160px;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    nav a {
+        padding: 10px 0;
+        margin: 0;
+    }
+}
