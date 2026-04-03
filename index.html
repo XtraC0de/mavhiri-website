@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mavhiri Tyres</title>
 
-  <!-- FAVICONS -->
   <link rel="icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
@@ -19,205 +16,144 @@
 
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <a href="#home" class="brand-link">
-        <img src="assets/mavhiri_logo.png" class="logo" alt="Mavhiri logo" />
-      </a>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-container">
+    <a href="#home" class="brand-link">
+      <img src="assets/mavhiri_logo.png" class="logo" />
+    </a>
 
-      <button class="menu-toggle" id="menu-toggle">☰</button>
+    <!-- FIX: hamburger hidden on desktop -->
+    <button class="menu-toggle" id="menu-toggle">☰</button>
 
-      <nav id="mobile-nav">
-        <a href="#home">Home</a>
-        <a href="#tyres">Tyres</a>
-        <a href="#about">About</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <nav id="mobile-nav">
+      <a href="#home">Home</a>
+      <a href="#tyres">Tyres</a>
+      <a href="#about">About</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-      <div class="desktop-contact">
-        <a href="#contact" class="btn-contact">Contact</a>
-      </div>
+    <div class="desktop-contact">
+      <a href="#contact" class="btn-contact">Contact</a>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <img src="assets/hero.png" class="hero-bg" alt="Hero background" />
+<!-- HERO -->
+<section id="home" class="hero">
+  <img src="assets/hero.png" class="hero-bg" />
 
-    <div class="container hero-content">
-      <div class="hero-text">
-        <h1>Reliable Tyres for Every Zim Road</h1>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1>Reliable Tyres for Every Zim Road</h1>
+      <p>Bulk supply of quality tyres for cars, kombis, buses & trucks across Zimbabwe.</p>
 
-        <p>
-          Bulk supply of quality tyres for cars, kombis,
-          buses & trucks across Zimbabwe.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#tyres" class="btn-primary">View Tyres</a>
-
-          <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20to%20order%20tyres"
-             target="_blank"
-             class="btn-secondary">
-            Order in Bulk
-          </a>
-        </div>
-
-        <span class="trust">Trusted by transporters and businesses</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="tyres" class="products">
-    <div class="container">
-      <h2>Our Tyres</h2>
-
-      <div class="grid">
-        <div class="card tyre-card" data-type="car">
-          <img src="assets/tyre_car.png" alt="Small car tyres" />
-          <h3>Small Car Tyres</h3>
-          <p>Passenger vehicle tyres</p>
-        </div>
-
-        <div class="card tyre-card" data-type="kombi">
-          <img src="assets/tyre_kombi.png" alt="Kombi tyres" />
-          <h3>Kombi Tyres</h3>
-          <p>Minibus tyres</p>
-        </div>
-
-        <div class="card tyre-card" data-type="truck">
-          <img src="assets/tyre_truck.png" alt="Truck tyres" />
-          <h3>Truck Tyres</h3>
-          <p>Heavy duty tyres</p>
-        </div>
-
-        <div class="card tyre-card" data-type="bus">
-          <img src="assets/tyre_bus.png" alt="Bus tyres" />
-          <h3>Bus Tyres</h3>
-          <p>Commercial tyres</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STOCK -->
-  <section id="stock" class="stock-section">
-    <div class="container">
-      <h2 id="stock-title">Car Tyres</h2>
-
-      <input
-        id="search-input"
-        type="text"
-        placeholder="Search tyre size or brand..."
-      />
-
-      <!-- IMPORTANT: stays empty for JS -->
-      <div id="stock-list"></div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="why">
-    <div class="container">
-      <h2>Why Choose Mavhiri?</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Reliable Stock</h3>
-          <p>Consistent availability of fast-moving tyre sizes.</p>
-        </div>
-
-        <div class="card">
-          <h3>Competitive Pricing</h3>
-          <p>Best value tyres tailored for Zimbabwe.</p>
-        </div>
-
-        <div class="card">
-          <h3>Built for Local Roads</h3>
-          <p>Durable tyres for Zimbabwe road conditions.</p>
-        </div>
-
-        <div class="card">
-          <h3>Bulk Supply</h3>
-          <p>Trusted distribution for fleets and businesses.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section id="team" class="team">
-    <div class="container">
-      <h2 class="team-title">Our Team</h2>
-
-      <div class="team-grid">
-        <div class="team-card">
-          <img src="assets/zanorashe.png" alt="CEO" />
-          <div class="team-info">
-            <h3>Zanorashe Abel Manzvera</h3>
-            <p class="team-position">CEO</p>
-          </div>
-        </div>
-
-        <div class="team-card">
-          <img src="assets/talent.png" alt="COO" />
-          <div class="team-info">
-            <h3>Talent Chikwasha</h3>
-            <p class="team-position">COO</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHATSAPP -->
-  <a href="https://wa.me/263771234567"
-     target="_blank"
-     class="whatsapp">
-    Chat on WhatsApp
-  </a>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="container contact-container">
-      <h2>Contact Us</h2>
-      <p>Get in touch for bulk tyre orders</p>
-
-      <div class="contact-card">
-        <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <span>+263 7XX XXX XXX</span>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <span>sales@mavhiri.shop</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container footer">
-      <img src="assets/mavhiri_logo.png" class="logo-footer" alt="Mavhiri logo" />
-
-      <div class="social-icons">
-        <a href="#"><img src="assets/facebook-logo.png" alt="Facebook" /></a>
-        <a href="#"><img src="assets/instagram-logo.png" alt="Instagram" /></a>
-        <a href="#"><img src="assets/tiktok-logo.png" alt="TikTok" /></a>
+      <div class="hero-buttons">
+        <a href="#tyres" class="btn-primary">View Tyres</a>
+        <a href="https://wa.me/263771234567" target="_blank" class="btn-secondary">
+          Order in Bulk
+        </a>
       </div>
 
-      <p>© 2026 Mavhiri. All rights reserved.</p>
+      <span class="trust">Trusted by transporters and businesses</span>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- ✅ CRITICAL FIX -->
-  <!-- Always load JS at the end -->
-  <script src="./script.js"></script>
+<!-- PRODUCTS -->
+<section id="tyres" class="products">
+  <div class="container">
+    <h2>Our Tyres</h2>
+
+    <div class="grid">
+      <div class="card tyre-card" data-type="car">
+        <img src="assets/tyre_car.png" />
+        <h3>Small Car Tyres</h3>
+      </div>
+
+      <div class="card tyre-card" data-type="kombi">
+        <img src="assets/tyre_kombi.png" />
+        <h3>Kombi Tyres</h3>
+      </div>
+
+      <div class="card tyre-card" data-type="truck">
+        <img src="assets/tyre_truck.png" />
+        <h3>Truck Tyres</h3>
+      </div>
+
+      <div class="card tyre-card" data-type="bus">
+        <img src="assets/tyre_bus.png" />
+        <h3>Bus Tyres</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STOCK -->
+<section id="stock" class="stock-section">
+  <div class="container">
+    <h2 id="stock-title">Car Tyres</h2>
+
+    <!-- FIXED INPUT STYLE -->
+    <input id="search-input" type="text" placeholder="Search tyre size or brand..." />
+
+    <div id="stock-list"></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="team">
+  <div class="container">
+    <h2 class="team-title">Our Team</h2>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="assets/zanorashe.png" />
+        <h3>Zanorashe Abel Manzvera</h3>
+        <p class="team-position">CEO</p>
+      </div>
+
+      <div class="team-card">
+        <img src="assets/talent.png" />
+        <h3>Talent Chikwasha</h3>
+        <p class="team-position">COO</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container contact-container">
+    <h2>Contact Us</h2>
+
+    <div class="contact-card">
+      <p>📞 +263 7XX XXX XXX</p>
+      <p>✉️ sales@mavhiri.shop</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer">
+    <img src="assets/mavhiri_logo.png" class="logo-footer" />
+
+    <div class="social-icons">
+      <img src="assets/facebook-logo.png" />
+      <img src="assets/instagram-logo.png" />
+      <img src="assets/tiktok-logo.png" />
+    </div>
+
+    <p>© 2026 Mavhiri</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/263771234567" class="whatsapp">Chat</a>
+
+<!-- CRITICAL -->
+<script src="./script.js"></script>
 
 </body>
 </html>
