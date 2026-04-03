@@ -1,137 +1,225 @@
-let stockData = [];
-let currentType = "car";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mavhiri Tyres</title>
 
-/* ================= HELPERS ================= */
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
-function formatTypeLabel(type) {
-  return type.charAt(0).toUpperCase() + type.slice(1) + " Tyres";
-}
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
 
-/* ================= LOAD STOCK ================= */
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="brand-link">
+        <img src="assets/mavhiri_logo.png" class="logo" alt="Mavhiri logo" />
+      </a>
 
-async function loadStock() {
-  try {
-    const response = await fetch("stock.json");
-    if (!response.ok) throw new Error("Could not load stock.json");
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        ☰
+      </button>
 
-    stockData = await response.json();
-    renderStock();
-  } catch (error) {
-    console.error("Error loading stock:", error);
-    document.getElementById("stock-list").innerHTML =
-      "<p>Failed to load stock data.</p>";
-  }
-}
+      <nav id="mobile-nav">
+        <a href="#home">Home</a>
+        <a href="#tyres">Tyres</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+        <a href="#contact" class="mobile-contact-link">Contact</a>
+      </nav>
 
-/* ================= RENDER STOCK ================= */
+      <div class="desktop-contact">
+        <a href="#contact" class="btn-contact">Contact</a>
+      </div>
+    </div>
+  </header>
 
-function renderStock() {
-  const list = document.getElementById("stock-list");
-  const title = document.getElementById("stock-title");
-  const searchInput = document.getElementById("search-input");
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <img src="assets/hero.png" class="hero-bg" alt="Hero background" />
 
-  const search = (searchInput?.value || "").toLowerCase().trim();
-  title.textContent = formatTypeLabel(currentType);
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Reliable Tyres for Every Zim Road</h1>
 
-  const filtered = stockData.filter((item) => {
-    const sameType = item.type === currentType;
+        <p>
+          Bulk supply of quality tyres for cars, kombis,
+          buses & trucks across Zimbabwe.
+        </p>
 
-    const matchesSearch =
-      item.brand.toLowerCase().includes(search) ||
-      item.size.toLowerCase().includes(search);
+        <div class="hero-buttons">
+          <a href="#tyres" class="btn-primary">View Tyres</a>
 
-    return sameType && matchesSearch;
-  });
+          <a
+            href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20to%20order%20tyres"
+            target="_blank"
+            class="btn-secondary"
+          >
+            Order in Bulk
+          </a>
+        </div>
 
-  if (filtered.length === 0) {
-    list.innerHTML = "<p>No tyres found for this category.</p>";
-    return;
-  }
+        <span class="trust">Trusted by transporters and businesses</span>
+      </div>
+    </div>
+  </section>
 
-  list.innerHTML = filtered
-    .map((item) => {
-      const lowStockClass = item.quantity <= 5 ? "low-stock" : "";
+  <!-- PRODUCTS -->
+  <section id="tyres" class="products">
+    <div class="container">
+      <h2>Our Tyres</h2>
 
-      return `
-        <div class="stock-item ${lowStockClass}">
-          <div>
-            <strong>${item.brand}</strong>
-            <small>Size: ${item.size}</small>
-            <small>Type: ${formatTypeLabel(item.type).replace(" Tyres", "")}</small>
-          </div>
+      <div class="grid">
+        <div class="card tyre-card" data-type="car">
+          <img src="assets/tyre_car.png" alt="Small car tyres" />
+          <h3>Small Car Tyres</h3>
+          <p>Passenger vehicle tyres</p>
+        </div>
 
-          <div class="stock-right">
-            <span class="qty">Stock: ${item.quantity}</span>
-            <span>$${item.price}</span>
+        <div class="card tyre-card" data-type="kombi">
+          <img src="assets/tyre_kombi.png" alt="Kombi tyres" />
+          <h3>Kombi Tyres</h3>
+          <p>Minibus tyres</p>
+        </div>
 
-            <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20${encodeURIComponent(item.brand + " " + item.size)}" target="_blank">
-              Order
-            </a>
+        <div class="card tyre-card" data-type="truck">
+          <img src="assets/tyre_truck.png" alt="Truck tyres" />
+          <h3>Truck Tyres</h3>
+          <p>Heavy duty tyres</p>
+        </div>
+
+        <div class="card tyre-card" data-type="bus">
+          <img src="assets/tyre_bus.png" alt="Bus tyres" />
+          <h3>Bus Tyres</h3>
+          <p>Commercial tyres</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STOCK -->
+  <section id="stock" class="stock-section">
+    <div class="container">
+      <h2 id="stock-title">Car Tyres</h2>
+
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search tyre size or brand..."
+      />
+
+      <div id="stock-list"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="why">
+    <div class="container">
+      <h2>Why Choose Mavhiri?</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Reliable Stock</h3>
+          <p>Consistent availability of fast-moving tyre sizes.</p>
+        </div>
+
+        <div class="card">
+          <h3>Competitive Pricing</h3>
+          <p>Best value tyres tailored for Zimbabwe.</p>
+        </div>
+
+        <div class="card">
+          <h3>Built for Local Roads</h3>
+          <p>Durable tyres for Zimbabwe road conditions.</p>
+        </div>
+
+        <div class="card">
+          <h3>Bulk Supply</h3>
+          <p>Trusted distribution for fleets and businesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="team">
+    <div class="container">
+      <h2 class="team-title">Our Team</h2>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="assets/zanorashe.png" alt="Zanorashe Abel Manzvera" />
+          <div class="team-info">
+            <h3>Zanorashe Abel Manzvera</h3>
+            <p class="team-position">Chief Executive Officer</p>
           </div>
         </div>
-      `;
-    })
-    .join("");
-}
 
-/* ================= EVENTS ================= */
+        <div class="team-card">
+          <img src="assets/talent.png" alt="Talent Chikwasha" />
+          <div class="team-info">
+            <h3>Talent Chikwasha</h3>
+            <p class="team-position">Chief Operating Officer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-function setupEvents() {
-  const tyreCards = document.querySelectorAll(".tyre-card");
-  const searchInput = document.getElementById("search-input");
-  const stockSection = document.getElementById("stock");
+  <!-- WHATSAPP -->
+  <a
+    href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20your%20tyres"
+    target="_blank"
+    class="whatsapp"
+  >
+    Chat on WhatsApp
+  </a>
 
-  tyreCards.forEach((card) => {
-    card.style.cursor = "pointer";
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="container contact-container">
+      <h2>Contact Us</h2>
+      <p>Get in touch for bulk tyre orders</p>
 
-    card.addEventListener("click", () => {
-      currentType = card.dataset.type;
-      renderStock();
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <span>+263 7XX XXX XXX</span>
+        </div>
 
-      stockSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    });
-  });
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <span>sales@mavhiri.shop</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  searchInput.addEventListener("input", renderStock);
-}
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer">
+      <img src="assets/mavhiri_logo.png" class="logo-footer" alt="Mavhiri footer logo" />
 
-/* ================= HAMBURGER MENU ================= */
+      <div class="social-icons">
+        <a href="#"><img src="assets/facebook-logo.png" alt="Facebook" /></a>
+        <a href="#"><img src="assets/instagram-logo.png" alt="Instagram" /></a>
+        <a href="#"><img src="assets/tiktok-logo.png" alt="TikTok" /></a>
+      </div>
 
-function setupMobileMenu() {
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("mobile-nav");
+      <p>© 2026 Mavhiri. All rights reserved.</p>
+    </div>
+  </footer>
 
-  if (!toggle || !nav) return;
-
-  const navLinks = nav.querySelectorAll("a");
-
-  // Toggle menu
-  toggle.addEventListener("click", () => {
-    nav.classList.toggle("show");
-  });
-
-  // Close when clicking a link
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("show");
-    });
-  });
-
-  // Close when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-      nav.classList.remove("show");
-    }
-  });
-}
-
-/* ================= INIT ================= */
-
-document.addEventListener("DOMContentLoaded", async () => {
-  setupEvents();
-  setupMobileMenu();
-  await loadStock();
-});
+  <script src="script.js"></script>
+</body>
+</html>
