@@ -195,3 +195,13 @@ body > :not(script):not(style) {
         font-size: 34px;
     }
 }
+
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+}
