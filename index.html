@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mavhiri Tyres</title>
 
+  <!-- FAVICONS -->
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 </head>
+
 <body>
 
   <!-- NAVBAR -->
@@ -26,16 +26,14 @@
         <img src="assets/mavhiri_logo.png" class="logo" alt="Mavhiri logo" />
       </a>
 
-      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
-        ☰
-      </button>
+      <button class="menu-toggle" id="menu-toggle">☰</button>
 
       <nav id="mobile-nav">
         <a href="#home">Home</a>
         <a href="#tyres">Tyres</a>
         <a href="#about">About</a>
         <a href="#team">Team</a>
-        <a href="#contact" class="mobile-contact-link">Contact</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div class="desktop-contact">
@@ -60,11 +58,9 @@
         <div class="hero-buttons">
           <a href="#tyres" class="btn-primary">View Tyres</a>
 
-          <a
-            href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20to%20order%20tyres"
-            target="_blank"
-            class="btn-secondary"
-          >
+          <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20to%20order%20tyres"
+             target="_blank"
+             class="btn-secondary">
             Order in Bulk
           </a>
         </div>
@@ -118,6 +114,7 @@
         placeholder="Search tyre size or brand..."
       />
 
+      <!-- IMPORTANT: stays empty for JS -->
       <div id="stock-list"></div>
     </div>
   </section>
@@ -158,18 +155,18 @@
 
       <div class="team-grid">
         <div class="team-card">
-          <img src="assets/zanorashe.png" alt="Zanorashe Abel Manzvera" />
+          <img src="assets/zanorashe.png" alt="CEO" />
           <div class="team-info">
             <h3>Zanorashe Abel Manzvera</h3>
-            <p class="team-position">Chief Executive Officer</p>
+            <p class="team-position">CEO</p>
           </div>
         </div>
 
         <div class="team-card">
-          <img src="assets/talent.png" alt="Talent Chikwasha" />
+          <img src="assets/talent.png" alt="COO" />
           <div class="team-info">
             <h3>Talent Chikwasha</h3>
-            <p class="team-position">Chief Operating Officer</p>
+            <p class="team-position">COO</p>
           </div>
         </div>
       </div>
@@ -177,11 +174,9 @@
   </section>
 
   <!-- WHATSAPP -->
-  <a
-    href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20your%20tyres"
-    target="_blank"
-    class="whatsapp"
-  >
+  <a href="https://wa.me/263771234567"
+     target="_blank"
+     class="whatsapp">
     Chat on WhatsApp
   </a>
 
@@ -208,7 +203,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="container footer">
-      <img src="assets/mavhiri_logo.png" class="logo-footer" alt="Mavhiri footer logo" />
+      <img src="assets/mavhiri_logo.png" class="logo-footer" alt="Mavhiri logo" />
 
       <div class="social-icons">
         <a href="#"><img src="assets/facebook-logo.png" alt="Facebook" /></a>
@@ -220,6 +215,9 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- ✅ CRITICAL FIX -->
+  <!-- Always load JS at the end -->
+  <script src="./script.js"></script>
+
 </body>
 </html>
