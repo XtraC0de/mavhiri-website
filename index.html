@@ -1,232 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mavhiri Tyres</title>
+let stockData = [];
+let currentType = "car";
 
-  <!-- FAVICON -->
-  <link rel="icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
+/* ================= HELPERS ================= */
 
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
-</head>
+function formatTypeLabel(type) {
+  return type.charAt(0).toUpperCase() + type.slice(1) + " Tyres";
+}
 
-<body>
+/* ================= LOAD STOCK ================= */
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container nav-container">
-      
-      <a href="#home">
-        <img src="assets/mavhiri_logo.png" class="logo" alt="Mavhiri logo" />
-      </a>
+async function loadStock() {
+  try {
+    const response = await fetch("stock.json");
+    if (!response.ok) throw new Error("Could not load stock.json");
 
-      <!-- HAMBURGER -->
-      <button class="menu-toggle" id="menu-toggle">☰</button>
+    stockData = await response.json();
+    renderStock();
+  } catch (error) {
+    console.error("Error loading stock:", error);
+    document.getElementById("stock-list").innerHTML =
+      "<p>Failed to load stock data.</p>";
+  }
+}
 
-      <!-- NAV -->
-      <nav id="mobile-nav">
-        <a href="#home">Home</a>
-        <a href="#tyres">Tyres</a>
-        <a href="#about">About</a>
-        <a href="#team">Team</a>
-        <a href="#contact" class="mobile-contact-link">Contact</a>
-      </nav>
+/* ================= RENDER STOCK ================= */
 
-      <!-- DESKTOP CONTACT -->
-      <div class="desktop-contact">
-        <a href="#contact" class="btn-contact">Contact</a>
-      </div>
+function renderStock() {
+  const list = document.getElementById("stock-list");
+  const title = document.getElementById("stock-title");
+  const searchInput = document.getElementById("search-input");
 
-    </div>
-  </header>
+  const search = (searchInput?.value || "").toLowerCase().trim();
+  title.textContent = formatTypeLabel(currentType);
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <img src="assets/hero.png" class="hero-bg" alt="Hero background" />
+  const filtered = stockData.filter((item) => {
+    const sameType = item.type === currentType;
 
-    <div class="container hero-content">
-      <div class="hero-text">
-        <h1>Reliable Tyres for Every Zim Road</h1>
+    const matchesSearch =
+      item.brand.toLowerCase().includes(search) ||
+      item.size.toLowerCase().includes(search);
 
-        <p>
-          Bulk supply of quality tyres for cars, kombis,
-          buses & trucks across Zimbabwe.
-        </p>
+    return sameType && matchesSearch;
+  });
 
-        <div class="hero-buttons">
-          <a href="#tyres" class="btn-primary">View Tyres</a>
+  if (filtered.length === 0) {
+    list.innerHTML = "<p>No tyres found for this category.</p>";
+    return;
+  }
 
-          <a
-            href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20to%20order%20tyres"
-            target="_blank"
-            class="btn-secondary"
-          >
-            Order in Bulk
-          </a>
-        </div>
+  list.innerHTML = filtered
+    .map((item) => {
+      const lowStockClass = item.quantity <= 5 ? "low-stock" : "";
 
-        <span class="trust">Trusted by transporters and businesses</span>
-      </div>
-    </div>
-  </section>
+      return `
+        <div class="stock-item ${lowStockClass}">
+          <div>
+            <strong>${item.brand}</strong>
+            <small>Size: ${item.size}</small>
+            <small>Type: ${formatTypeLabel(item.type).replace(" Tyres", "")}</small>
+          </div>
 
-  <!-- PRODUCTS -->
-  <section id="tyres" class="products">
-    <div class="container">
-      <h2>Our Tyres</h2>
+          <div class="stock-right">
+            <span class="qty">Stock: ${item.quantity}</span>
+            <span>$${item.price}</span>
 
-      <div class="grid">
-        <div class="card tyre-card" data-type="car">
-          <img src="assets/tyre_car.png" />
-          <h3>Small Car Tyres</h3>
-          <p>Passenger vehicle tyres</p>
-        </div>
-
-        <div class="card tyre-card" data-type="kombi">
-          <img src="assets/tyre_kombi.png" />
-          <h3>Kombi Tyres</h3>
-          <p>Minibus tyres</p>
-        </div>
-
-        <div class="card tyre-card" data-type="truck">
-          <img src="assets/tyre_truck.png" />
-          <h3>Truck Tyres</h3>
-          <p>Heavy duty tyres</p>
-        </div>
-
-        <div class="card tyre-card" data-type="bus">
-          <img src="assets/tyre_bus.png" />
-          <h3>Bus Tyres</h3>
-          <p>Commercial tyres</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STOCK -->
-  <section id="stock" class="stock-section">
-    <div class="container">
-      <h2 id="stock-title">Car Tyres</h2>
-
-      <input id="search-input" type="text" placeholder="Search tyre size or brand..." />
-
-      <div id="stock-list"></div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="why">
-    <div class="container">
-      <h2>Why Choose Mavhiri?</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Reliable Stock</h3>
-          <p>Consistent availability of fast-moving tyre sizes.</p>
-        </div>
-
-        <div class="card">
-          <h3>Competitive Pricing</h3>
-          <p>Best value tyres tailored for Zimbabwe.</p>
-        </div>
-
-        <div class="card">
-          <h3>Built for Local Roads</h3>
-          <p>Durable tyres for Zimbabwe road conditions.</p>
-        </div>
-
-        <div class="card">
-          <h3>Bulk Supply</h3>
-          <p>Trusted distribution for fleets and businesses.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section id="team" class="team">
-    <div class="container">
-      <h2 class="team-title">Our Team</h2>
-
-      <div class="team-grid">
-        <div class="team-card">
-          <img src="assets/zanorashe.png" />
-          <div class="team-info">
-            <h3>Zanorashe Abel Manzvera</h3>
-            <p class="team-position">CEO</p>
+            <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20${encodeURIComponent(item.brand + " " + item.size)}" target="_blank">
+              Order
+            </a>
           </div>
         </div>
+      `;
+    })
+    .join("");
+}
 
-        <div class="team-card">
-          <img src="assets/talent.png" />
-          <div class="team-info">
-            <h3>Talent Chikwasha</h3>
-            <p class="team-position">COO</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* ================= EVENTS ================= */
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="container contact-container">
-      <h2>Contact Us</h2>
+function setupEvents() {
+  const tyreCards = document.querySelectorAll(".tyre-card");
+  const searchInput = document.getElementById("search-input");
+  const stockSection = document.getElementById("stock");
 
-      <div class="contact-card">
-        <div class="contact-item">
-          📞 +263 7XX XXX XXX
-        </div>
+  tyreCards.forEach((card) => {
+    card.style.cursor = "pointer";
 
-        <div class="contact-item">
-          ✉️ sales@mavhiri.shop
-        </div>
-      </div>
-    </div>
-  </section>
+    card.addEventListener("click", () => {
+      currentType = card.dataset.type;
+      renderStock();
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container footer">
-      <img src="assets/mavhiri_logo.png" class="logo-footer" />
-
-      <div class="social-icons">
-        <img src="assets/facebook-logo.png" />
-        <img src="assets/instagram-logo.png" />
-        <img src="assets/tiktok-logo.png" />
-      </div>
-
-      <p>© 2026 Mavhiri. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- JS -->
-  <script src="script.js"></script>
-
-  <!-- HAMBURGER SCRIPT -->
-  <script>
-    const toggle = document.getElementById("menu-toggle");
-    const nav = document.getElementById("mobile-nav");
-
-    toggle.addEventListener("click", () => {
-      nav.classList.toggle("show");
-    });
-
-    document.querySelectorAll("#mobile-nav a").forEach(link => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("show");
+      stockSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     });
-  </script>
+  });
 
-</body>
-</html>
-  <script src="script.js"></script>
-</body>
-</html>
+  searchInput.addEventListener("input", renderStock);
+}
+
+/* ================= HAMBURGER MENU ================= */
+
+function setupMobileMenu() {
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("mobile-nav");
+
+  if (!toggle || !nav) return;
+
+  const navLinks = nav.querySelectorAll("a");
+
+  // Toggle menu
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("show");
+  });
+
+  // Close when clicking a link
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("show");
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove("show");
+    }
+  });
+}
+
+/* ================= INIT ================= */
+
+document.addEventListener("DOMContentLoaded", async () => {
+  setupEvents();
+  setupMobileMenu();
+  await loadStock();
+});
