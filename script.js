@@ -1,14 +1,19 @@
 let stockData = [];
 let currentType = "car";
 
+/* ================= HELPERS ================= */
+
 function formatTypeLabel(type) {
   return type.charAt(0).toUpperCase() + type.slice(1) + " Tyres";
 }
+
+/* ================= LOAD STOCK ================= */
 
 async function loadStock() {
   try {
     const response = await fetch("stock.json");
     if (!response.ok) throw new Error("Could not load stock.json");
+
     stockData = await response.json();
     renderStock();
   } catch (error) {
@@ -17,6 +22,8 @@ async function loadStock() {
       "<p>Failed to load stock data.</p>";
   }
 }
+
+/* ================= RENDER STOCK ================= */
 
 function renderStock() {
   const list = document.getElementById("stock-list");
@@ -28,6 +35,7 @@ function renderStock() {
 
   const filtered = stockData.filter((item) => {
     const sameType = item.type === currentType;
+
     const matchesSearch =
       item.brand.toLowerCase().includes(search) ||
       item.size.toLowerCase().includes(search);
@@ -51,16 +59,22 @@ function renderStock() {
             <small>Size: ${item.size}</small>
             <small>Type: ${formatTypeLabel(item.type).replace(" Tyres", "")}</small>
           </div>
+
           <div class="stock-right">
             <span class="qty">Stock: ${item.quantity}</span>
             <span>$${item.price}</span>
-            <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20${encodeURIComponent(item.brand + " " + item.size)}" target="_blank">Order</a>
+
+            <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20am%20interested%20in%20${encodeURIComponent(item.brand + " " + item.size)}" target="_blank">
+              Order
+            </a>
           </div>
         </div>
       `;
     })
     .join("");
 }
+
+/* ================= EVENTS ================= */
 
 function setupEvents() {
   const tyreCards = document.querySelectorAll(".tyre-card");
@@ -73,14 +87,51 @@ function setupEvents() {
     card.addEventListener("click", () => {
       currentType = card.dataset.type;
       renderStock();
-      stockSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      stockSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   });
 
   searchInput.addEventListener("input", renderStock);
 }
 
+/* ================= HAMBURGER MENU ================= */
+
+function setupMobileMenu() {
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("mobile-nav");
+
+  if (!toggle || !nav) return;
+
+  const navLinks = nav.querySelectorAll("a");
+
+  // Toggle menu
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("show");
+  });
+
+  // Close when clicking a link
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("show");
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove("show");
+    }
+  });
+}
+
+/* ================= INIT ================= */
+
 document.addEventListener("DOMContentLoaded", async () => {
   setupEvents();
+  setupMobileMenu();
   await loadStock();
 });
