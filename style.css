@@ -15,21 +15,18 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: auto;
-    padding: 0 40px; /* premium spacing */
 }
 
-/* ================= NAVBAR ================= */
-
+/* NAVBAR */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 110px;
+    height: 90px;
     display: flex;
     align-items: center;
-    background: rgba(10, 30, 60, 0.65);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: rgba(10, 30, 60, 0.55);
+    backdrop-filter: blur(10px);
     z-index: 1000;
 }
 
@@ -41,9 +38,7 @@ body {
 
 /* LOGO */
 .logo {
-    height: 120px;
-    width: auto;
-    display: block;
+    height: 110px;
 }
 
 /* NAV */
@@ -53,33 +48,25 @@ nav {
 }
 
 nav a {
-    margin: 0 18px;
+    margin: 0 15px;
     text-decoration: none;
-    color: #dbe6ff;
-    font-weight: 500;
+    color: white;
     transition: 0.3s;
 }
 
 nav a:hover {
-    color: #4da3ff;
+    color: #1E5EFF;
 }
 
 /* CONTACT BUTTON */
 .btn-contact {
-    background: linear-gradient(135deg, #2D6BFF, #1E5EFF);
-    color: white !important;
-    text-decoration: none !important;
-    padding: 12px 22px;
-    border-radius: 12px;
-    font-weight: 600;
-    display: inline-block;
-    box-shadow: 0 10px 25px rgba(30,94,255,0.3);
-    transition: 0.3s;
-}
-
-.btn-contact:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(30,94,255,0.4);
+  background: linear-gradient(135deg, #2D6BFF, #1E5EFF);
+  color: white !important;
+  text-decoration: none !important;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  display: inline-block;
 }
 
 /* HAMBURGER */
@@ -92,8 +79,7 @@ nav a:hover {
     cursor: pointer;
 }
 
-/* ================= HERO ================= */
-
+/* HERO */
 .hero {
     position: relative;
     height: 90vh;
@@ -102,32 +88,24 @@ nav a:hover {
     overflow: hidden;
 }
 
-/* KEY FIX: premium alignment */
-.hero .container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
 .hero-content {
-    max-width: 600px;
-    z-index: 2;
+    position: relative;
+    z-index: 1;
 }
 
-/* TEXT */
+.hero-text {
+    max-width: 600px;
+}
+
 .hero h1 {
-    font-size: 56px;
-    line-height: 1.1;
-    margin: 0;
+    font-size: 48px;
 }
 
 .hero p {
-    color: #cfd8ff;
+    color: #ccc;
     margin: 20px 0;
-    font-size: 18px;
 }
 
-/* BUTTONS */
 .hero-buttons a {
     margin-right: 10px;
     text-decoration: none;
@@ -135,15 +113,15 @@ nav a:hover {
 
 .btn-primary {
     background: #1E5EFF;
-    padding: 14px 28px;
-    border-radius: 10px;
+    padding: 12px 25px;
+    border-radius: 6px;
     color: white;
 }
 
 .btn-secondary {
     border: 1px solid #1E5EFF;
-    padding: 14px 28px;
-    border-radius: 10px;
+    padding: 12px 25px;
+    border-radius: 6px;
     color: #1E5EFF;
 }
 
@@ -154,48 +132,54 @@ nav a:hover {
 }
 
 /* HERO BG */
+.hero-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .hero::after {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(11,31,58,0.95), rgba(11,31,58,0.4));
+    background: linear-gradient(to right, rgba(11,31,58,0.9), rgba(11,31,58,0.4));
 }
 
-/* ================= PRODUCTS ================= */
-
+/* PRODUCTS */
 .products {
-    padding: 80px 0;
+    padding: 60px 0;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 20px;
 }
 
 .card {
     background: #132C50;
     padding: 20px;
-    border-radius: 14px;
+    border-radius: 10px;
     transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-6px);
 }
 
 .card img {
     width: 100%;
-    height: 240px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-/* ================= TEAM ================= */
+.card:hover {
+    transform: translateY(-5px);
+}
 
+/* TEAM */
 .team {
-    padding: 100px 0;
+    padding: 80px 0;
     text-align: center;
 }
 
@@ -207,18 +191,45 @@ nav a:hover {
 
 .team-card {
     background: rgba(19, 44, 80, 0.6);
-    border-radius: 18px;
+    border-radius: 16px;
     padding: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .team-card img {
     width: 100%;
-    border-radius: 14px;
+    border-radius: 12px;
 }
 
-/* ================= STOCK ================= */
+/* CONTACT IMPROVED */
+.contact {
+    padding: 80px 0;
+}
 
+.contact-card {
+    background: rgba(255,255,255,0.05);
+    padding: 30px 40px;
+    border-radius: 16px;
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+}
+
+.contact-icon {
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+/* STOCK IMPROVED */
 #search-input {
     width: 100%;
     padding: 14px;
@@ -231,9 +242,147 @@ nav a:hover {
 
 .stock-item {
     background: rgba(19, 44, 80, 0.7);
-    padding: 18px 22px;
-    border-radius: 14px;
+    padding: 18px 20px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
-    border: 1px solid rgba(255,255,255,0
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.stock-item strong {
+    font-size: 18px;
+}
+
+.stock-right {
+    display: flex;
+    gap: 10px;
+}
+
+/* FOOTER */
+footer {
+    background: #081426;
+    padding: 40px 0 30px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-footer {
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.social-icons img {
+    width: 50px;
+    height: 50px;
+}
+
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    padding: 15px 20px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none !important;
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 90px;
+        right: 20px;
+        background: rgba(10,30,60,0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 15px 20px;
+        border-radius: 10px;
+        min-width: 160px;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    nav a {
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    .hero {
+        height: auto;
+        padding: 120px 0 60px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stock-item {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+        padding: 16px;
+    }
+
+    .stock-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .team-card {
+        text-align: center;
+    }
+}
+
+.hero {
+  background: linear-gradient(rgba(11,31,58,0.7), rgba(11,31,58,0.9)),
+              url("assets/hero.png") center/cover no-repeat;
+}
+
+/* Mobile hero */
+@media (max-width: 768px) {
+  .hero {
+    background: linear-gradient(rgba(11,31,58,0.7), rgba(11,31,58,0.9)),
+                url("assets/vertical-hero.png") center/cover no-repeat;
+  }
+}
