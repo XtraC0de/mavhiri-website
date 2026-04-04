@@ -8,13 +8,17 @@ function formatTypeLabel(type) {
   return type.charAt(0).toUpperCase() + type.slice(1) + " Tyres";
 }
 
-// Load stock
+// Load stock (🔥 cache-busting fix added)
 async function loadStock() {
   try {
-    const response = await fetch("stock.json");
+    const response = await fetch("stock.json?v=" + Date.now());
+
     if (!response.ok) throw new Error("Could not load stock.json");
 
     stockData = await response.json();
+
+    console.log("LIVE STOCK DATA:", stockData); // Debug (can remove later)
+
     renderStock();
   } catch (error) {
     console.error("Error loading stock:", error);
@@ -60,15 +64,15 @@ function renderStock() {
       return `
         <div class="stock-item ${lowStockClass}">
           <div>
-            <strong>${item.brand}</strong> 
-            Size: ${item.size} 
-            Type: ${formatTypeLabel(item.type).replace(" Tyres", "")}
+            <strong>${item.brand}</strong><br>
+            <small>Size: ${item.size}</small><br>
+            <small>Type: ${formatTypeLabel(item.type).replace(" Tyres", "")}</small>
           </div>
 
           <div class="stock-right">
-            <span>Stock: ${item.quantity}</span>
-            <span>$${item.price}</span>
-            <a href="https://wa.me/263771234567?text=Hi%20I%20want%20${item.brand}%20${item.size}" target="_blank">
+            <span class="qty">Stock: ${item.quantity}</span>
+            <span class="price">$${item.price}</span>
+            <a href="https://wa.me/263771234567?text=Hi%20Mavhiri%2C%20I%20want%20${encodeURIComponent(item.brand + " " + item.size)}" target="_blank">
               Order
             </a>
           </div>
