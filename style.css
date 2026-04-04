@@ -60,9 +60,13 @@ nav a:hover {
 
 /* CONTACT BUTTON */
 .btn-contact {
-    background: #1E5EFF;
-    padding: 10px 20px;
-    border-radius: 6px;
+  background: linear-gradient(135deg, #2D6BFF, #1E5EFF);
+  color: white !important;
+  text-decoration: none !important;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  display: inline-block;
 }
 
 /* HAMBURGER */
