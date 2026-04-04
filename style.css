@@ -375,3 +375,13 @@ footer {
                 url("assets/vertical-hero.png") center/cover no-repeat;
   }
 }
+
+.stock-right a {
+  text-decoration: none;
+  color: white;
+  background: #25D366;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-weight: 500;
+  display: inline-block;
+}
