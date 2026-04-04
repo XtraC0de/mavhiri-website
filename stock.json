@@ -2,41 +2,49 @@
   {
     "id": 5,
     "type": "bus",
-    "brand": "Continental",
+    "brand": "Linglong",
     "size": "295/80R22.5",
     "quantity": 4,
-    "price": 110
+    "price": 55
   },
   {
     "id": 2,
     "type": "car",
-    "brand": "Bridgestone",
+    "brand": "Double Coin",
     "size": "195/65R15",
     "quantity": 8,
-    "price": 95
+    "price": 85
+  },
+  {
+    "id": 6,
+    "type": "car",
+    "brand": "Duraturn",
+    "size": "205/55R16",
+    "quantity": 100,
+    "price": 48
   },
   {
     "id": 1,
     "type": "car",
-    "brand": "Michelin",
+    "brand": "Goodride",
     "size": "225/45R17",
     "quantity": 12,
-    "price": 220
+    "price": 135
   },
   {
     "id": 3,
     "type": "kombi",
-    "brand": "Goodyear",
+    "brand": "Doublestar",
     "size": "205R16",
     "quantity": 10,
-    "price": 330
+    "price": 220
   },
   {
     "id": 4,
     "type": "truck",
-    "brand": "Double Coin",
+    "brand": "Three-A (AAA)",
     "size": "315/80R22.5",
     "quantity": 6,
-    "price": 450
+    "price": 370
   }
 ]
