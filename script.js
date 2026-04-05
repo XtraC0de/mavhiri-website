@@ -1,30 +1,30 @@
-// ================= FORCE HERO LOAD =================
+// ================= SCROLL FIX (NO FLICKER) =================
 
-// Always start at top (fix mobile + hash issue)
+// Disable browser restoring scroll position
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+// Force top immediately (before render)
+window.scrollTo(0, 0);
+
+// Extra safety (after load)
 window.addEventListener("load", () => {
-  // Remove #hash from URL (like #team)
-  if (window.location.hash) {
-    history.replaceState(null, null, window.location.pathname);
-  }
-
-  // Force scroll to top
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, 0);
+  window.scrollTo(0, 0);
 });
 
 
 // ================= STOCK SYSTEM =================
 
 let stockData = [];
-let currentType = "car";
+let currentType = localStorage.getItem("selectedTyreType") || "car"; // ✅ REMEMBER SELECTION
 
 // Format label
 function formatTypeLabel(type) {
   return type.charAt(0).toUpperCase() + type.slice(1) + " Tyres";
 }
 
-// Load stock (🔥 cache-busting fix added)
+// Load stock
 async function loadStock() {
   try {
     const response = await fetch("stock.json?v=" + Date.now());
@@ -32,8 +32,6 @@ async function loadStock() {
     if (!response.ok) throw new Error("Could not load stock.json");
 
     stockData = await response.json();
-
-    console.log("LIVE STOCK DATA:", stockData);
 
     renderStock();
   } catch (error) {
@@ -111,6 +109,10 @@ function setupEvents() {
 
     card.addEventListener("click", () => {
       currentType = card.dataset.type;
+
+      // ✅ SAVE SELECTION
+      localStorage.setItem("selectedTyreType", currentType);
+
       renderStock();
 
       if (stockSection) {
@@ -133,12 +135,10 @@ function setupMobileMenu() {
 
   if (!toggle || !nav) return;
 
-  // Toggle menu
   toggle.addEventListener("click", () => {
     nav.classList.toggle("show");
   });
 
-  // Close when clicking a link
   const links = nav.querySelectorAll("a");
 
   links.forEach((link) => {
@@ -147,7 +147,6 @@ function setupMobileMenu() {
     });
   });
 
-  // Close when clicking outside
   document.addEventListener("click", (e) => {
     if (!nav.contains(e.target) && !toggle.contains(e.target)) {
       nav.classList.remove("show");
