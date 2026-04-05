@@ -1,3 +1,19 @@
+// ================= FORCE HERO LOAD =================
+
+// Always start at top (fix mobile + hash issue)
+window.addEventListener("load", () => {
+  // Remove #hash from URL (like #team)
+  if (window.location.hash) {
+    history.replaceState(null, null, window.location.pathname);
+  }
+
+  // Force scroll to top
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, 0);
+});
+
+
 // ================= STOCK SYSTEM =================
 
 let stockData = [];
@@ -17,7 +33,7 @@ async function loadStock() {
 
     stockData = await response.json();
 
-    console.log("LIVE STOCK DATA:", stockData); // Debug (can remove later)
+    console.log("LIVE STOCK DATA:", stockData);
 
     renderStock();
   } catch (error) {
@@ -82,6 +98,7 @@ function renderStock() {
     .join("");
 }
 
+
 // ================= EVENTS =================
 
 function setupEvents() {
@@ -106,6 +123,7 @@ function setupEvents() {
     searchInput.addEventListener("input", renderStock);
   }
 }
+
 
 // ================= MOBILE MENU =================
 
@@ -136,6 +154,7 @@ function setupMobileMenu() {
     }
   });
 }
+
 
 // ================= INIT =================
 
