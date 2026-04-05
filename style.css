@@ -79,7 +79,7 @@ nav a:hover {
     cursor: pointer;
 }
 
-/* HERO (DESKTOP - STRONG CONTRAST) */
+/* HERO (DESKTOP) */
 .hero {
     position: relative;
     height: 90vh;
@@ -87,7 +87,6 @@ nav a:hover {
     align-items: center;
     overflow: hidden;
 
-    /* ✅ MATCH MOBILE FEEL */
     background: linear-gradient(
         rgba(11,31,58,0.45),
         rgba(11,31,58,0.65)
@@ -104,7 +103,7 @@ nav a:hover {
     max-width: 600px;
 }
 
-/* PREMIUM TEXT */
+/* TEXT */
 .hero h1 {
     font-size: 48px;
     text-shadow: 0 4px 20px rgba(0,0,0,0.7);
@@ -293,10 +292,6 @@ footer {
     color: white;
     text-decoration: none !important;
     z-index: 999;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
 }
 
 /* ================= MOBILE ================= */
@@ -328,16 +323,17 @@ footer {
         margin: 0;
     }
 
-    /* MOBILE HERO (LIGHTER + FOCUSED) */
+    /* 🔥 MOBILE HERO FIX */
     .hero {
         height: auto;
-        padding: 120px 0 60px;
+        min-height: 75vh; /* ✅ removes empty blue space */
+        padding: 120px 0 40px;
 
         background: linear-gradient(
             rgba(11,31,58,0.4),
             rgba(11,31,58,0.6)
         ),
-        url("assets/vertical-hero.png") center 20%/cover no-repeat;
+        url("assets/vertical-hero.png") center 15%/cover no-repeat;
     }
 
     .hero h1 {
